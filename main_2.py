@@ -17,3 +17,84 @@
 # 2 - Cada registro deve estar em uma linha
 # 3 - Não deixar linhas ou espaços sobrando
 # 4 - Use o caractere de escape (") quando o delimitador aparecer no valor.
+
+# csv.reader e csv.DictReader
+# csv.reader lê o CSV em formato de lista
+# csv.DictReader lê o CSV em formato de dicionário
+
+import csv
+from pathlib import Path
+
+CAMINHO_CSV = Path(__file__).parent / 'planilhas' / 'main_2.csv'
+
+
+lista_clientes = [
+    {'Nome': 'Luiz Otávio', 'Endereço': 'Av 1, 22'},
+    {'Nome': 'João Silva', 'Endereço': 'R. 2, "1"'},
+    {'Nome': 'Maria Sol', 'Endereço': 'Av B, 3A'}
+]
+
+
+with open(CAMINHO_CSV, 'w') as arquivo:
+    nome_colunas = lista_clientes[0].keys()
+    escritor = csv.DictWriter(
+        arquivo,
+        fieldnames=nome_colunas
+        )
+    escritor.writeheader()
+
+    for cliente in lista_clientes:
+        print(cliente)
+        escritor.writerow(cliente)
+
+
+# lista_clientes = [
+#     ['Luiz Otávio', 'Av 1, 22'],
+#     ['João Silva', 'R. 2, "1"'],
+#     ['Maria Sol', 'Av B, 3A']
+# ]
+
+# with open(CAMINHO_CSV, 'w') as arquivo:
+#     nome_colunas = ['Nome', 'Endereço']
+#     escritor = csv.writer(arquivo)
+
+#     escritor.writerow(nome_colunas)
+
+#     for cliente in lista_clientes:
+#         escritor.writerow(cliente)
+
+# lista_clientes = [
+#     {'Nome': 'Luiz Otávio', 'Endereço': 'Av 1, 22'},
+#     {'Nome': 'João Silva', 'Endereço': 'R. 2, "1"'},
+#     {'Nome': 'Maria Sol', 'Endereço': 'Av B, 3A'}
+# ]
+
+# with open(CAMINHO_CSV, 'w') as arquivo:
+#     nome_colunas = ['Nome', 'Endereço']
+#     # nome_colunas = lista_clientes[0].keys()
+#     escritor = csv.writer(arquivo)
+
+#     escritor.writerow(nome_colunas)
+
+#     for cliente in lista_clientes:
+#         print(cliente.values())
+#         escritor.writerow(cliente.values())
+
+# print(lista_clientes[0])
+# print(lista_clientes[0].keys())
+
+# with open(CAMINHO_CSV, 'r', encoding='utf-8') as arquivo:
+#     leitor = csv.DictReader(arquivo)
+#     # leitor = csv.reader(arquivo)
+#     # print(next(leitor))
+#     # print(next(leitor))
+
+#     for linha in leitor:
+#         # print(linha)
+#         # print(linha['Nome'])
+#         print(linha['Nome'], linha['Idade'], linha['Endereço'])
+        # print(linha[0])
+        # print(linha[1])
+
+
+# print(CAMINHO_CSV)
