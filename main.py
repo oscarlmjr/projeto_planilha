@@ -1,4 +1,5 @@
 # https://pypdf2.readthedocs.io/en/3.0.0/
+# https://pt.stackoverflow.com/questions/333148/como-detectar-quebra-de-linha-em-input-python
 
 from pathlib import Path
 from PyPDF2 import PdfReader
@@ -10,12 +11,16 @@ PASTA_RAIZ = Path(__file__).parent
 PASTA_EXTRATO = PASTA_RAIZ / 'pdfs_extrato'
 PASTA_NOVA = PASTA_RAIZ / 'extratos_novos'
 
-EXTRATO_BANCARIO = PASTA_EXTRATO / 'Pasta_testexlsx.pdf'
+# EXTRATO_BANCARIO = PASTA_EXTRATO / 'Pasta_testexlsx.pdf'
+EXTRATO_BANCARIO = PASTA_EXTRATO / 'Banco do Brasil.pdf'
 
 PASTA_NOVA.mkdir(exist_ok=True)
 
+CAMINHO_PDF = PASTA_NOVA / 'Banco do Brasil.txt'
+
 # CAMINHO_CSV = Path(__file__).parent / 'planilhas' / 'main_2.csv'
 # CAMINHO_CSV = Path(__file__).parent / 'planilhas'
+CAMINHO_CSV = Path(__file__).parent / 'planilhas' / 'Pasta_testexlsx.txt'
 
 
 reader = PdfReader(EXTRATO_BANCARIO)
@@ -30,8 +35,30 @@ print(page0.extract_text())
 # print(page1.extract_text())
 print()
 
-for linha in page0.extract_text():
-    print(linha)
+# ano = '2025'
+# data_vencimento = '10/12'
+
+# with open(CAMINHO_CSV, 'w+', encoding='utf-8') as arquivo:
+with open(CAMINHO_PDF, 'w+', encoding='utf-8') as arquivo:
+
+    arquivo.write(page0.extract_text())
+
+#     nome_colunas = [
+#         ano, f'Transação / Vencimento {data_vencimento}', 'Janeiro',
+#         'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho',
+#         'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro', 'Total'
+#         ]
+    
+#     escritor = csv.writer(arquivo)
+#     escritor.writerow(nome_colunas)
+
+#     for cliente in lista_clientes:
+#         escritor.writerow(cliente.values())
+#         print(cliente.values())
+
+    
+# for linha in page0.extract_text():
+#     print(linha)
 
 # print(CAMINHO_CSV)
 
