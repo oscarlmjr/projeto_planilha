@@ -25,7 +25,8 @@
 import csv
 from pathlib import Path
 
-CAMINHO_CSV = Path(__file__).parent / 'planilhas' / 'main_2.csv'
+# CAMINHO_CSV = Path(__file__).parent / 'planilhas' / 'main_2.csv'
+CAMINHO_CSV = Path(__file__).parent / 'planilhas' / 'main_3.csv'
 
 
 lista_clientes = [
@@ -35,7 +36,7 @@ lista_clientes = [
 ]
 
 
-with open(CAMINHO_CSV, 'w') as arquivo:
+with open(CAMINHO_CSV, 'w', newline='') as arquivo:
     nome_colunas = lista_clientes[0].keys()
     escritor = csv.DictWriter(
         arquivo,
@@ -77,8 +78,8 @@ with open(CAMINHO_CSV, 'w') as arquivo:
 #     escritor.writerow(nome_colunas)
 
 #     for cliente in lista_clientes:
-#         print(cliente.values())
 #         escritor.writerow(cliente.values())
+#         print(cliente.values())
 
 # print(lista_clientes[0])
 # print(lista_clientes[0].keys())
@@ -88,13 +89,15 @@ with open(CAMINHO_CSV, 'w') as arquivo:
 #     # leitor = csv.reader(arquivo)
 #     # print(next(leitor))
 #     # print(next(leitor))
+#     # print(next(leitor))
 
 #     for linha in leitor:
 #         # print(linha)
+#         # print(linha[0])
+#         # print(linha[1])
+#         # print(linha[2])
 #         # print(linha['Nome'])
 #         print(linha['Nome'], linha['Idade'], linha['Endereço'])
-        # print(linha[0])
-        # print(linha[1])
 
 
-# print(CAMINHO_CSV)
+# # print(CAMINHO_CSV)
